@@ -18,6 +18,13 @@ pipeline {
                             echo "Carpeta creada exitosamente."
                         }
                     }
+
+                    stage('Debug') {
+                        steps {
+                            sh 'ls -R'
+                        }
+                    }
+
                 }
             }
         }
