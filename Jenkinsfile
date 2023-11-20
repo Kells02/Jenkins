@@ -19,14 +19,14 @@ pipeline {
                         }
                     }
 
-                    stage('Debug') {
+                }
+            }
+        }
+
+        stage('Debug') {
                         steps {
                             sh 'ls -R'
                         }
                     }
-
-                }
-            }
-        }
     }
 }
