@@ -1,37 +1,24 @@
 pipeline {
     agent any
+
     stages {
-        //stage('Prueba') {
-        //    steps {
-        //        script{
-        //            sh 'echo =============================================='
-        //                // deploy and rollback folders
-        //                dir('Prueba') {
-        //                    git branch: 'main',
-        //                    credentialsId: 'jenkinsgit',
-        //                    url: '$FOLDER' 
-        //                }
-                    
-                    // scripts
-        //               git branch: 'main',
-        //                credentialsId: 'jenkinsgit',
-        //                url: 'ssh://git@github.com:Kells02/Jenkins.git' 
-        //                sh 'echo =============================================='
-        //                sh 'echo ============= FIN CLON ======================='
-        //                sh 'echo =============================================='
-        //            
-        //        }
-        //    }
-        //}
-        stage('folder') {
-                steps {
-                    script {
-                        sh 'echo =============================================='
-                        sh 'echo ================= ST 1 ======================='
-                        sh 'echo =============================================='
-                        sh "python3 stage-folders.py"
+        stage('Main') {
+            steps {
+                script {
+                    def client_folder = 'Prueba/'
+
+                    dir(client_folder) {
+                        echo "Verificando la existencia de la carpeta..."
+                        if (sh(script: "test -d $client_folder", returnStatus: true) == 0) {
+                            echo "La carpeta ya existe. Realizar acciones de rollback si es necesario."
+                        } else {
+                            echo "La carpeta no existe. Creando la carpeta..."
+                            sh "mkdir $client_folder"
+                            echo "Carpeta creada exitosamente."
+                        }
                     }
                 }
             }
+        }
     }
 }
