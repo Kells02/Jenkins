@@ -1,28 +1,28 @@
 pipeline {
     agent any
     stages {
-        stage('Prueba') {
-            steps {
-                script{
-                    sh 'echo =============================================='
-                        // deploy and rollback folders
-                        dir('Prueba') {
-                            git branch: 'main',
-                            credentialsId: 'jenkinsgit',
-                            url: '$FOLDER' 
-                        }
+        //stage('Prueba') {
+        //    steps {
+        //        script{
+        //            sh 'echo =============================================='
+        //                // deploy and rollback folders
+        //                dir('Prueba') {
+        //                    git branch: 'main',
+        //                    credentialsId: 'jenkinsgit',
+        //                    url: '$FOLDER' 
+        //                }
                     
                     // scripts
-                        git branch: 'main',
-                        credentialsId: 'jenkinsgit',
-                        url: 'ssh://git@github.com:Kells02/Jenkins.git' 
-                        sh 'echo =============================================='
-                        sh 'echo ============= FIN CLON ======================='
-                        sh 'echo =============================================='
-                    
-                }
-            }
-        }
+        //               git branch: 'main',
+        //                credentialsId: 'jenkinsgit',
+        //                url: 'ssh://git@github.com:Kells02/Jenkins.git' 
+        //                sh 'echo =============================================='
+        //                sh 'echo ============= FIN CLON ======================='
+        //                sh 'echo =============================================='
+        //            
+        //        }
+        //    }
+        //}
         stage('folder') {
                 steps {
                     script {
