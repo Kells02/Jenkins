@@ -1,32 +1,41 @@
 pipeline {
     agent any
 
-    environment {
-        client_folder = 'Prueba/'
-    }
-
     stages {
-        stage('Main') {
+        stage('Checkout') {
             steps {
                 script {
-                    echo "Verificando la existencia de la carpeta..."
-                    if (fileExists(client_folder)) {
-                        echo "La carpeta ya existe. Realizar acciones de rollback si es necesario."
-                    } else {
-                        echo "La carpeta no existe. Creando la carpeta..."
-                        dir(client_folder) {
-                            echo "Carpeta creada exitosamente."
+                    dir('https://github.com/Kells02/Jenkins.git') {
+                        git branch: 'main',
+                        credentialsId: 'jenkinsgit',
+                        url: 'https://github.com/Kells02/Jenkins.git'
+                    }
+                }
+            }
+        }
+
+        stage('Create Folder') {
+            steps {
+                script {
+                    dir('https://github.com/Kells02/Jenkins.git') {
+                        if (!fileExists('Prueba')) {
+                            sh 'mkdir Prueba'
+                        } else {
+                            echo 'La carpeta ya existe.'
                         }
                     }
-
                 }
             }
         }
 
         stage('Debug') {
-                        steps {
-                            sh 'ls -R'
-                        }
+            steps {
+                script {
+                    dir('https://github.com/Kells02/Jenkins.git') {
+                        sh 'ls -R'
                     }
+                }
+            }
+        }
     }
 }
