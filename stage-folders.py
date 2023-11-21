@@ -28,6 +28,7 @@ def copy_template(client_folder):
     # Crea la carpeta del cliente si no existe
     if not os.path.exists(client_folder):
         os.makedirs(client_folder)
+        os.path.join(client_folder, 'prueba.txt')
 
 def verify_template(client_folder):
     # Agrega aquí las acciones necesarias para verificar la plantilla
