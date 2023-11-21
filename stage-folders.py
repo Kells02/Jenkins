@@ -28,7 +28,15 @@ def copy_template(client_folder):
     # Crea la carpeta del cliente si no existe
     if not os.path.exists(client_folder):
         os.makedirs(client_folder)
-        os.path.join(client_folder, 'prueba.txt')
+        # Ruta completa del nuevo archivo dentro del directorio
+        new_file_path = os.path.join(client_folder, 'nombre_del_archivo.txt')
+
+        # Contenido que deseas escribir en el archivo
+        file_content = 'Este es el contenido del archivo.'
+
+        # Crear el archivo y escribir el contenido
+        with open(new_file_path, 'w') as file:
+            file.write(file_content)
 
 def verify_template(client_folder):
     # Agrega aquí las acciones necesarias para verificar la plantilla
