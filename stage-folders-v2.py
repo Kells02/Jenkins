@@ -5,7 +5,9 @@ def main():
     #client_folder = "D:\Tenea\Jenkins\Client\Prueba"  # Actualiza con la ruta correcta
     client_folder = 'Prueba/'
 
-    if verify_folder(client_folder): # Si existe la carpeta notificamos y iniciamos rollback
+    while verify_folder(client_folder):
+
+    #if verify_folder(client_folder): # Si existe la carpeta notificamos y iniciamos rollback
         print("ERROR: Carpeta cliente existe! Iniciando rollback...")
         print("Iniciando Rollback")
         rollback(client_folder)
